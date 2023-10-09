@@ -7,4 +7,3 @@ def list_odd_even():
         else:
             odd.append(i)
     return even,odd
-print(list_odd_even())
