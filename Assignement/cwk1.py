@@ -1,17 +1,20 @@
 """
 Introduction to Programming Coursework 1
 
-@author:
+@author:Edward Falkner-Carter
 """
 
 
 def valid_puzzle(Input_list):
-    assert isinstance(Input_list,list) , "please enter list"
-    assert len(Input_list) > 1 , "please enter a list containing "
-    length = len(Input_list[0])
+    
+    if type(Input_list) != list:
+        return False
+    length = len( Input_list[0] )
+
     for element in Input_list:
         if length != len(element):
             return False
+        
     return True
 
 
@@ -37,14 +40,14 @@ def similarity_grouping(Input_list):
 
 def highest_count_items(Input_list):
     Grouped_list=[]
-    str=""
+    string=""
     for i in range(len(Input_list)):
         if Input_list[i] == ",":
-            Grouped_list.append(str)
-            str=""
+            Grouped_list.append(string)
+            string=""
         elif Input_list[i] != " ":
-            str+=Input_list[i]   
-    Grouped_list.append(str)
+            string+=Input_list[i]   
+    Grouped_list.append(string)
     Grouped_list=similarity_grouping(Grouped_list)
     max=[["",0]]
     for element in Grouped_list:
@@ -65,11 +68,11 @@ def highest_count_items(Input_list):
 def valid_char_in_string(poplist,charset):
     results = True
     count=0
-    if type()
+    if type(charset) != list:
+        return False
     for element_poplist in poplist:
         for i in range(len(element_poplist)):
             for y in range(len(charset)):
-                print(charset[y] ,element_poplist[i],element_poplist)
                 if element_poplist[i] != charset[y]:
                     count+=1
                     if count == len(charset):
@@ -80,14 +83,25 @@ def valid_char_in_string(poplist,charset):
     
 
 
-def total_price(unit: int) -> float:
-    # delete this line and pass to write your code here
-    pass
+def total_price(Units):
+    price=0
+    while Units:
+        if Units >= 6:
+            Units-=6
+            price+=5
+        elif Units >= 1:
+            Units-=1
+            price+=1.25
+    if price>20:
+        price*=0.9
+    return price
+
+    
 
 
 if __name__ == "__main__":
     # sample test for task 1.1
-    '''
+    
     puzzle1 = ['RUNAROUNDDL', 'EDCITOAHCYV', 'ZYUWSWEDZYA', 'AKOTCONVOYV',
                'LSBOSEVRUCI', 'BOBLLCGLPBD', 'LKTEENAGEDL', 'ISTREWZLCGY',
                'AURAPLEBAYG', 'RDATYTBIWRA', 'TEYEMROFINU']
@@ -135,7 +149,7 @@ if __name__ == "__main__":
     print(highest_count_items(data4))
     print(highest_count_items(data5))
     print(highest_count_items(data6))
-    '''
+    
     # sample test for task 1.4
     popList1 = ['00000', '00001', '00010', '00011', '00100']
     popList2 = ['aac', 'ctt', 'gat', 'ccc', 'gcc', 'ctg', 'gtc', 'tcg',
@@ -149,11 +163,10 @@ if __name__ == "__main__":
     print(valid_char_in_string(popList2, charSet2))
     print(valid_char_in_string(popList3, charSet3))
     print(valid_char_in_string(popList1, charSet4))
-    
-    '''
+   
     # sample test for task 1.5
     print(total_price(3))
     print(total_price(12))
     print(total_price(15))
     print(total_price(26))
-    '''
+    
