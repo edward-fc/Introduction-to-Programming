@@ -6,97 +6,150 @@ Introduction to Programming Coursework 1
 
 
 def valid_puzzle(Input_list):
-    
+    """This function takes one argument puzzle which is a list of strings with more than one item. 
+    This function returns Boolean True if the puzzle is valid and Boolean False otherwise. 
+    A valid puzzle contains strings of equal length. 
+    For example, given the following three puzzles, puzzle1 is valid whilst puzzle2 
+    (not all strings are the same length), puzzle3 (contain item that is not a string), 
+    and puzzle4 (not a list) are invalid. 
+    The strings in the puzzle are case insensitive. 
+    """
+
+    #Verify that The variable Input_list is a list
+
     if type(Input_list) != list:
         return False
-    length = len( Input_list[0] )
+    #Initialize Variable length
+    length = len(Input_list[0])
 
+    #For every element in Input_list, we compare the length of each string
     for element in Input_list:
         if length != len(element):
             return False
-        
+
     return True
 
 
-
 def similarity_grouping(Input_list):
-    #I verify that the input is a list
-    assert isinstance(Input_list,list) , "please enter list"
-    #I name the output List
-    results=[]
-    #I take each element of the list 
+    """This function takes a list and returns a list with items of same value in the same sublist. 
+    The sublists should be returned in the order of each element's first appearance in the given list. 
+    Return an emptylist if data is not a list. Note that ‘a’, and “a” are considered as the same. 
+    Also, integer 1 is considered the same as ‘1’ or “1”. """
+
+    #Verify that The variable Input_list is a list
+    if type(Input_list) != list:
+        return False
+    # Initialize the variable Results
+    results = []
+    # For every element in Input_list, we compare each element to see if there are similar or not
     for element in Input_list:
-        new_element=True
-        #I compaire each element to previous element that was added to the result list
+        #Intiliaze the variable new_element
+        new_element = True
+
         for i in range(len(results)):
+
             if element == results[i][0]:
+
                 results[i].append(element)
-                new_element=False
+                new_element = False
+
         if new_element:
             results.append([element])
+    #Return a list with sublist conatining identical items
     return results
 
 
-
 def highest_count_items(Input_list):
-    Grouped_list=[]
-    string=""
+    """This function returns a list for item(s) with highest count in data. 
+    Each item in data is commaseparated. The returned list is in the format [[item, count]]. 
+    If there is a tie, return all items with thehighest count 
+    (i.e., [[item1, count], [item2, count], etc...]). 
+    Return an empty list if data is not a string."""
+
+    #Verify that The variable Input_list is a list
+
+    if not(type(Input_list) == str):
+        return []
+
+    #Initilize the variables Grouped_list and String and max
+
+    Grouped_list = []
+    max = [["", 0]]
+    string = ""
+
+    #1st Step Formating Data into a list
+
     for i in range(len(Input_list)):
+
         if Input_list[i] == ",":
+
             Grouped_list.append(string)
-            string=""
+            string = ""
+
         elif Input_list[i] != " ":
-            string+=Input_list[i]   
+
+            string += Input_list[i]
+
     Grouped_list.append(string)
-    Grouped_list=similarity_grouping(Grouped_list)
-    max=[["",0]]
+
+    # 2nd Step: Use similarity_grouping to regroup similar items
+
+    Grouped_list = similarity_grouping(Grouped_list)
+
+    # 3rd Step: Find largest set of items in Grouped_list
+    
     for element in Grouped_list:
-        if max[0][1]<=len(element):
-            max.insert(0,[element,len(element)])
+
+        if max[0][1] <= len(element):
+
+            max.insert(0, [element, len(element)])
+
         else:
-            max.append([element,len(element)])
-    results=[[max[0][0][0],max[0][1]]]
-    for i in range(1,len(max)):
+            max.append([element, len(element)])
+
+    # 4th Step: Check for duplicates
+
+    results = [[max[0][0][0], max[0][1]]]
+
+    for i in range(1, len(max)):
+
         if results[0][1] == max[i][1]:
-            results.append([max[i][0][0],max[i][1]])
+
+            results.append([max[i][0][0], max[i][1]])
+
         else:
             return results
 
-    
 
-
-def valid_char_in_string(poplist,charset):
+def valid_char_in_string(poplist, charset):
     results = True
-    count=0
+    count = 0
     if type(charset) != list:
         return False
     for element_poplist in poplist:
         for i in range(len(element_poplist)):
             for y in range(len(charset)):
                 if element_poplist[i] != charset[y]:
-                    count+=1
+                    count += 1
                     if count == len(charset):
                         results = False
-            count=0
+            count = 0
     return results
-
-    
 
 
 def total_price(Units):
-    price=0
+    price = 0
     while Units:
         if Units >= 6:
-            Units-=6
-            price+=5
+            Units -= 6
+            price += 5
         elif Units >= 1:
-            Units-=1
-            price+=1.25
-    if price>20:
-        price*=0.9
+            Units -= 1
+            price += 1.25
+    if price > 20:
+        price *= 0.9
     return price
-
-    
+  
 
 
 if __name__ == "__main__":
