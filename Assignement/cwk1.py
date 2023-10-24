@@ -4,51 +4,53 @@ Introduction to Programming Coursework 1
 @author:Edward Falkner-Carter
 """
 
+
 def valid_puzzle(input_list):
     """
-    This function takes one argument puzzle 
-    which is a list of strings with more than one item. 
-    This function returns Boolean True 
-    if the puzzle is valid and Boolean False otherwise. 
-    A valid puzzle contains strings of equal length.  
+    This function takes one argument puzzle
+    which is a list of strings with more than one item.
+    This function returns Boolean True
+    if the puzzle is valid and Boolean False otherwise.
+    A valid puzzle contains strings of equal length. 
     """
 
-    #Verify that The variable input_list is a list
+    # Verify that The variable input_list is a list
 
     if not isinstance(input_list, list):
         return False
-    #Initialize Variable length
+    # Initialize Variable length
     length = len(input_list[0])
 
-    #For every element in input_list
-    #Compare the length of each string
+    # For every element in input_list
+    # Compare the length of each string
     for element in input_list:
         if length != len(element):
             return False
 
     return True
 
+
 def similarity_grouping(input_list):
     """
-    This function takes a list and returns a list 
-    with items of same value in the same sublist. 
-    The sublists should be returned 
-    in the order of each element's 
-    first appearance in the given list. 
-    Return an emptylist if data is not a list. 
-    Note that ‘a’, and “a” are considered as the same. 
+    This function takes a list and returns a list
+    with items of same value in the same sublist.
+    The sublists should be returned
+    in the order of each element's
+    first appearance in the given list.
+    Return an emptylist if data is not a list.
+    Note that ‘a’, and “a” are considered as the same.
     """
 
-    #Verify that The variable input_list is a list
+    # Verify that The variable input_list is a list
     if not isinstance(input_list, list):
         return False
     # Initialize the variable Results
     results = []
     # For every element in input_list,
-    # Compare each element to see 
+    # Compare each element to see
     # if there are similar or not
     for element in input_list:
-        #Intiliaze the variable new_element
+        # Intiliaze the variable new_element
         new_element = True
 
         for i, results_element in enumerate(results):
@@ -60,30 +62,30 @@ def similarity_grouping(input_list):
 
         if new_element:
             results.append([element])
-    #Return a list with sublist conatining identical items
+    # Return a list with sublist conatining identical items
     return results
 
 
 def highest_count_items(input_list):
-    """This function returns a list for item(s) 
-    with highest count in data. 
-    Each item in data is commaseparated. 
-    The returned list is in the format [[item, count]]. 
-    If there is a tie, return all items 
-    with the highest count 
+    """This function returns a list for item(s)
+    with highest count in data.
+    Each item in data is commaseparated.
+    The returned list is in the format [[item, count]].
+    If there is a tie, return all items
+    with the highest count
     Return an empty list if data is not a string."""
 
-    #Verify that The variable input_list is a list
+    # Verify that The variable input_list is a list
 
     if not isinstance(input_list, str):
         return []
-    #Initilize the variables grouped_list, string, max
+    # Initilize the variables grouped_list, string, max
 
     grouped_list = []
     max_list = [["", 0]]
     string = ""
 
-#1st Step Formating Data into a list
+# 1st Step Formating Data into a list
 
     for element in input_list:
 
@@ -98,7 +100,7 @@ def highest_count_items(input_list):
 
     grouped_list.append(string)
 
-# 2nd Step: 
+# 2nd Step:
 # Use similarity_grouping to regroup similar items
 
     similarity_grouped_list = similarity_grouping(grouped_list)
@@ -131,26 +133,26 @@ def highest_count_items(input_list):
 
 def valid_char_in_string(poplist, charset):
     """
-    This function takes two arguments popList and charSet, 
+    This function takes two arguments popList and charSet,
     in which popList is a list of strings and
-    charSet is a list of strings with a length of 1 
-    (a character). 
-    This function returns a Boolean False if any string 
-    in popList contains characters not in charSet, 
-    or invalid charSet. Otherwise, returns a Boolean True. 
-    Examples of valid charSet are ['0', '1'], ['-', '*']. 
+    charSet is a list of strings with a length of 1
+    (a character).
+    This function returns a Boolean False if any string
+    in popList contains characters not in charSet,
+    or invalid charSet. Otherwise, returns a Boolean True.
+    Examples of valid charSet are ['0', '1'], ['-', '*'].
     """
-    #Initialisation of the Variables
+    # Initialisation of the Variables
     results = True
     count = 0
-    #Checking if charset is a list
+    # Checking if charset is a list
 
     if not isinstance(charset, list):
         return False
-    #Enumerate all string in the list of list 
-    #Compare it with the string in charset
-    #Count the number of times the element was different 
-    #to the charset element
+    # Enumerate all string in the list of list
+    # Compare it with the string in charset
+    # Count the number of times the element was different
+    # to the charset element
     for element_poplist in poplist:
         for string in element_poplist:
             for element_charset in charset:
@@ -164,15 +166,15 @@ def valid_char_in_string(poplist, charset):
 
 def total_price(Units):
     """
-    This function returns the total price 
-    to pay based on the unit to buy according 
+    This function returns the total price
+    to pay based on the unit to buy according
     to the following pricing rules:
     - Rule 1: Single unit: £1.25
     - Rule 2: 6 units (Sixpack): £5.00
-    - Rule 3: 10% discount if total price is £20.00 or more. 
-    If the price calculated after applying 
-    the first two rules gives a value greater 
-    than or equals to £20.00, 
+    - Rule 3: 10% discount if total price is £20.00 or more.
+    If the price calculated after applying
+    the first two rules gives a value greater
+    than or equals to £20.00,
     the total price will be 10% less than the value.
     """
     price = 0
@@ -186,8 +188,6 @@ def total_price(Units):
     if price > 20:
         price *= 0.9
     return price
-
-
 
 if __name__ == "__main__":
     # sample test for task 1.1
