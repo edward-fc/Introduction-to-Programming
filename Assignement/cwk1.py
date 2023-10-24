@@ -31,8 +31,10 @@ def valid_puzzle(Input_list):
 
 
 def similarity_grouping(Input_list):
-    """This function takes a list and returns a list with items of same value in the same sublist. 
-    The sublists should be returned in the order of each element's first appearance in the given list. 
+    """This function takes a list and returns a list 
+    with items of same value in the same sublist. 
+    The sublists should be returned in the order of each element's first appearance 
+    in the given list. 
     Return an emptylist if data is not a list. Note that ‘a’, and “a” are considered as the same. 
     Also, integer 1 is considered the same as ‘1’ or “1”. """
 
@@ -122,14 +124,28 @@ def highest_count_items(Input_list):
 
 
 def valid_char_in_string(poplist, charset):
+    """
+    This function takes two arguments popList and charSet, 
+    in which popList is a list of strings and
+    charSet is a list of strings with a length of 1 (a character). 
+    This function returns a Boolean False if any string 
+    in popList contains characters not in charSet, 
+    or invalid charSet. Otherwise, returns a Boolean True. 
+    Examples of valid charSet are ['0', '1'], ['-', '*']. 
+    
+    """
+    #Initialisation of the Variables
     results = True
     count = 0
+    #Checking if charset is a list
     if type(charset) != list:
         return False
+    #Enumerate all string in the list of list and Compare it with the string in charset
+    #Then we count the number of times the element was different to the charset element
     for element_poplist in poplist:
-        for i in range(len(element_poplist)):
-            for y in range(len(charset)):
-                if element_poplist[i] != charset[y]:
+        for string in element_poplist:
+            for element_charset in charset:
+                if string != element_charset:
                     count += 1
                     if count == len(charset):
                         results = False
@@ -138,6 +154,15 @@ def valid_char_in_string(poplist, charset):
 
 
 def total_price(Units):
+    """
+    This function returns the total price to pay based on the unit to buy according 
+    to the following pricing rules:
+    - Rule 1: Single unit: £1.25
+    - Rule 2: 6 units (Sixpack): £5.00
+    - Rule 3: 10% discount if total price is £20.00 or more. 
+    If the price calculated after applying thefirst two rules gives a value greater 
+    than or equals to £20.00, the total price will be 10% less than the value.
+    """
     price = 0
     while Units:
         if Units >= 6:
