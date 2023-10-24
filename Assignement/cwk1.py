@@ -11,7 +11,7 @@ def valid_puzzle(input_list):
     which is a list of strings with more than one item.
     This function returns Boolean True
     if the puzzle is valid and Boolean False otherwise.
-    A valid puzzle contains strings of equal length. 
+    A valid puzzle contains strings of equal length.
     """
 
     # Verify that The variable input_list is a list
@@ -188,6 +188,7 @@ def total_price(Units):
     if price > 20:
         price *= 0.9
     return price
+
 
 if __name__ == "__main__":
     # sample test for task 1.1
