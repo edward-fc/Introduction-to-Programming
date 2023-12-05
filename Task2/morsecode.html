@@ -19,18 +19,71 @@ function encdec(){
       ':': '---...', ',': '--..--', '=': '-...-', '!': '-.-.--', '.': '.-.-.-',
       '-': '-....-', '+': '.-.-.', '"': '.-..-.', '?': '..--..', '/': '-..-.'
     }
-	/*
-	write your JavaScript codes below
-	*/
-	
+    const mdecode = {
+      '.-':'A' ,'-...' :'B' ,'-.-.' :'C' ,'-..' :'D' ,'.' :'E' , '..-.':'F' ,
+      '--.': 'G','....' :'H' ,'..' :'I' ,'.---' :'J' ,'-.-' :'K' ,'.-..' :'L' ,
+      '--': 'M','-.' :'N' ,'---' :'O' ,'.--.' :'P' , '--.-':'Q' , '.-.':'R' ,
+      '...': 'S','-' :'T' ,'..-' :'U' ,'...-' :'V' , '.--':'W' ,'-..-' :'X' ,
+     '-.--' :'Y' ,'--..' :'Z' , ' ': ' ','-----' :'0' ,
+     '.----' :'1' ,'..---' :'2' ,'...--' : '3','....-' :'4' , '.....':'5' ,
+      '-....':'6' ,'--...' :'7' ,'---..' :'8' ,'----.' :'9' ,
+      '.-...' :'&','.----.' :"'" ,'.--.-.' :'@' , '-.--.-' :')','-.--.' :'(' ,
+     '---...' :':' ,'--..--' :',' ,'-...-' :'=' ,'-.-.--' :'!' ,'.-.-.-' :'.' ,
+     '-....-' :'-' ,'.-.-.' :'+' ,'.-..-.' :'"' ,'..--..' :'?' , '-..-.' :'/' 
+    }
+    
+  var answer = "";
+  var error_message = "";
+
+  if (operation == "enc"){
+    for (let index = 0; index < str_input.length; index++) {
+    var element = str_input[index].toUpperCase();
+    if (mcode[element] == undefined){
+        console.log("Unkown element?");
+        error_message="Alert \"Invalid input\"";
+        break;
+        }
+    if (element != " "){
+      answer+=mcode[element];
+    }
+    answer+=" ";
+  }
+  }else if(operation == "dec"){
+    var element = "";
+    var error_message = "";
+    str_input+=" ";
+    for (let index = 0; index < str_input.length; index++) {
+      if(str_input[index]!=" "){
+        element+=str_input[index];
+      }else if(element != ""){
+        if (mdecode[element] == undefined){
+        console.log("Unkown element?");
+        error_message="Alert \"Invalid input\"";
+        break;
+        }else{
+        console.log(mdecode[element]);
+        answer+=mdecode[element];
+        console.log(answer);
+        }
+      
+      element="";
+    }else{
+        answer+=" "
+      }
+    }
+  }
+  if(error_message == ""){
 	document.getElementById("output").innerHTML = answer;
+  }else{
+    document.getElementById("output").innerHTML = error_message;
+  }
 }
 
 </script>
 </head>
 <body>
 <H1>Morse code encoder/decoder</H1>
-<h3>@author: write your name here </h3>
+<h3>@author: Edward Falkner-Carter</h3>
 <div>
 <form>
 <p> Enter a string</p>
